@@ -1,7 +1,7 @@
 var Alarm = require('./../js/alarm.js').alarmModule;
 
 var displayAlarmTime = function(alarmMoment){
-  $('#alarm-countdown').text("Alarm set for: " + alarmMoment.format("MM DD YYYY HH:mm"));
+  $('#alarm-countdown').text("Alarm set for: " + alarmMoment.format("LT"));
 };
 
 var displayAlarmSounding = function() {
@@ -15,7 +15,7 @@ var cleanup = function(){
 };
 
 var updateTime = function(){
-  $('#current-time').text(moment().format("HH:mm:ss"));
+  $('#current-time').text(moment().format("LTS"));
 }
 
 $(document).ready(function() {

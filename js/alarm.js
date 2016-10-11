@@ -46,7 +46,7 @@ Alarm.prototype.reset = function(cleanup){
   clearInterval(this.alarmIntervalId);
   cleanup();
   this.timeOut = 0;
-  this.alarmIsSounding = false;
+
 }
 
 exports.alarmModule = Alarm;
