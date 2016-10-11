@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="build/css/vendor.css">
   <script src="build/js/vendor.min.js"></script>
   <script type="text/javascript" src="build/js/app.js"></script>
   <title>Alarm Clock</title>
 </head>
 <body>
-   <div class="container">
-     <h1>Alarm clock</h1>
-     <form id="time-form">
-       Select a time:
-       <input id="time" type="time" name="usr_time">
-       <button class='btn btn-warning' type="submit">Set Alarm </button>
-     </form>
-     <h3 id="current-time"></h3>
-     <h3 id="alarm-countdown"></h3>
-     <h3 id="alarm-message"></h3>
-     <button class="btn btn-success" id="snooze" type="submit">Snooze</button>
-     <button class="btn btn-danger" id="reset" type="submit">Reset</button>
-   </div>
- </body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <h1>Alarm clock</h1>
+        <form id="time-form">
+          <div class="form-group">
+            <label for="usr_time">Select a time:</label>
+            <input id="time" type="time" name="usr_time" class="form-control" required>
+          </div>
+          <button class='btn btn-warning' type="submit">Set Alarm </button>
+        </form>
+        <h3 id="current-time"></h3>
+        <h3 id="alarm-countdown"></h3>
+        <h3 id="alarm-message"></h3>
+        <button class="btn btn-success" id="snooze" type="submit">Snooze</button>
+        <button class="btn btn-danger" id="reset" type="submit">Reset</button>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

@@ -1,48 +1,41 @@
-$(document).ready(function() {
-  var timeOut = 0;
-  var alarmIsSounding = false;
+var Alarm = require('./../js/alarm.js').alarmModule;
 
-  window.setInterval(function(){
-    $('#current-time').text(moment().format("HH:mm:ss"));
-    if(alarmIsSounding){
-      timeOut++;
-    }
-    if(timeOut > 10){
-      $('#alarm-countdown').text("");
-      $("#time-form").show();
-      $('#alarm-message').text("");
-      timeOut = 0;
-      alarmIsSounding = false;
-    }
-  }, 1000);
+var displayAlarmTime = function(alarmMoment){
+  $('#alarm-countdown').text("Alarm set for: " + alarmMoment.format("MM DD YYYY HH:mm"));
+};
+
+var displayAlarmSounding = function() {
+  $('#alarm-message').text("alarm sounding!");
+}
+
+var cleanup = function(){
+  $('#alarm-countdown').text("");
+  $("#time-form").show();
+  $('#alarm-message').text("");
+};
+
+var updateTime = function(){
+  $('#current-time').text(moment().format("HH:mm:ss"));
+}
+
+$(document).ready(function() {
+
+  var alarm = new Alarm();
+  alarm.startClock(updateTime, cleanup);
 
   $('#time-form').submit(function(event) {
     event.preventDefault();
     $(this).hide();
-
     $('#alarm-message').text("alarm set!");
     var time = $('#time').val();
-    var alarmMoment = moment(time,"HH:mm");
-    $('#alarm-countdown').text("Alarm set for: " + alarmMoment.format("HH:mm")).css("color","red");
+    alarm.setAlarm(time, displayAlarmTime, displayAlarmSounding);
+  });
 
-    var id = window.setInterval(function(){
-      if (moment().isSame(alarmMoment, "minute")) {
-        $('#alarm-message').text("alarm sounding!");
-        clearInterval(id);
-        alarmIsSounding = true;
-      }
-    }, 1000);
+  $('#snooze').click(function() {
+    alarm.snooze(5, displayAlarmTime);
+  });
 
-    $('#snooze').click(function() {
-      alarmMoment = alarmMoment.add(5,'minutes');
-      $('#alarm-countdown').text("Alarm set for: " + alarmMoment.format("HH:mm")).css("color","red");
-    });
-    
-    $('#reset').click(function() {
-      clearInterval(id);
-      $('#alarm-countdown').text("");
-      $("#time-form").show();
-      $('#alarm-message').text("");
-    });
+  $('#reset').click(function() {
+    alarm.reset(cleanup);
   });
 });
