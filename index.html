@@ -9,19 +9,16 @@
 <body>
    <div class="container">
      <h1>Alarm clock</h1>
-     <form id="alarm-clock">
-       <div class="form-group">
-         <label for="hours">Enter the alarm hours:</label>
-         <input id="hours" type="text">
-         <label for="minutes">Enter the alarm minutes:</label>
-         <input id="minutes" type="text">
-         <button class="btn-success" type="submit">Add alarm</button>
-       </div>
+     <form id="time-form">
+       Select a time:
+       <input id="time" type="time" name="usr_time">
+       <button class='btn btn-warning' type="submit">Set Alarm </button>
      </form>
      <h3 id="current-time"></h3>
      <h3 id="alarm-countdown"></h3>
      <h3 id="alarm-message"></h3>
-     <button class="btn-success" id="snooze" type="submit">Snooze</button>
+     <button class="btn btn-success" id="snooze" type="submit">Snooze</button>
+     <button class="btn btn-danger" id="reset" type="submit">Reset</button>
    </div>
  </body>
 </html>
